@@ -21,31 +21,10 @@ Dim SapGuiAuto As Object
 
 matnumbers = ActiveWorkbook.ActiveSheet.Range("i1").Value
 
-    On Error Resume Next
     Set SapGuiAuto = GetObject("SAPGUI")
-    If SapGuiAuto Is Nothing Then
-        MsgBox "Could not get SAPGUI object. Make sure SAP GUI scripting is enabled.", vbCritical
-        Exit Sub
-    End If
-    
     Set objGui = SapGuiAuto.GetScriptingEngine
-    If objGui Is Nothing Then
-        MsgBox "Could not get SAP scripting engine. Ensure SAP is running and scripting is enabled.", vbCritical
-        Exit Sub
-    End If
-    
     Set objConn = objGui.Children(0)
-    If objConn Is Nothing Then
-        MsgBox "Could not get SAP connection. Make sure you are logged into SAP.", vbCritical
-        Exit Sub
-    End If
-    
     Set session1 = objConn.Children(0)
-    If session1 Is Nothing Then
-        MsgBox "Could not get first SAP session.", vbCritical
-        Exit Sub
-    End If
-    On Error GoTo 0
 Range("I6").Select
     Selection.Copy
 
